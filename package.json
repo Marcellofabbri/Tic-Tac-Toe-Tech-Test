@@ -1,14 +1,20 @@
 {
   "devDependencies": {
+    "@thetimes/jest-lint": "^1.4.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.8.0",
     "jest": "^25.1.0"
   },
   "scripts": {
+    "lint": "eslint ./sum.js",
     "test": "jest --colors --coverage",
     "coverage": "jest"
   },
   "jest": {
     "collectCoverage": true,
-    "collectCoverageFrom": ["<rootDir>/*.{js,jsx}"],
+    "collectCoverageFrom": [
+      "<rootDir>/*.{js,jsx}"
+    ],
     "coverageThreshold": {
       "global": {
         "statements": 100,
