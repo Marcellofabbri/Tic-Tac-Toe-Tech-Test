@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "scripts": {
+    "test": "jest --colors --coverage",
+    "coverage": "jest"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": ["<rootDir>/*.{js,jsx}"],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
+  }
+}
