@@ -6,7 +6,7 @@
     "jest": "^25.1.0"
   },
   "scripts": {
-    "lint": "eslint ./sum.js",
+    "lint": "eslint .",
     "test": "jest --colors --coverage",
     "coverage": "jest"
   },
