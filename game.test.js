@@ -21,3 +21,8 @@ test('has a playing board stored as a property', () => {
   var game = new Game()
   expect(game.board).toBeInstanceOf(Array)
 });
+
+test('has a turn property to identify whose turn it is', () => {
+  var game = new Game()
+  expect(game.turn).toBeDefined()
+});

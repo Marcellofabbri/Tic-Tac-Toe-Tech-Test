@@ -3,6 +3,7 @@ var { Player } = require('./player');
 function Game() {
   this.players = []
   this.board = []
+  this.turn = null
   }
 
 exports.Game = Game;
