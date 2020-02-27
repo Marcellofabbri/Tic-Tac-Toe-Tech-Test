@@ -2,7 +2,8 @@ var { Player } = require('./player');
 
 function Game() {
   this.players = []
-  this.board = []
+  this.availableFields = []
+  this.takenFields = []
   this.turn = null
   }
 
@@ -21,7 +22,11 @@ Game.prototype.boardDimension = function(fieldsInALine) {
     for (var i = 0; i < fieldsInALine; i++) {
     var map = new Map()
     map[c] = i
-    this.board.push(map)
+    this.availableFields.push(map)
     }
   }
+}
+
+Game.prototype.play = function() {
+  return
 }

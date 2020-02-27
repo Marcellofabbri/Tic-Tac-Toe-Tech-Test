@@ -22,15 +22,17 @@ test('when players are generated they get assigned a number', () => {
 });
 
 test('has a playing board stored as a property', () => {
-  expect(game.board).toBeInstanceOf(Array)
+  expect(game.availableFields).toBeInstanceOf(Array)
 });
 
 test('can decide the dimensions of the board', () => {
   game.boardDimension(3)
-  expect(game.board).toHaveLength(9)
-  expect(game.board[0]).toBeInstanceOf(Map)
+  expect(game.availableFields).toHaveLength(9)
+  expect(game.availableFields[0]).toBeInstanceOf(Map)
 });
 
-test('has a turn property to identify whose turn it is', () => {
-  expect(game.turn).toBeDefined()
+test('has two arrays: one with unclaimed fields and one with claimed fields', () => {
+  expect(game.takenFields).toBeInstanceOf(Array)
 });
+
+test.todo('has a function that entails the whole playing process')
