@@ -4,7 +4,7 @@ function Game() {
   this.players = []
   this.availableFields = []
   this.takenFields = []
-  this.turn = null
+  this.turn = 0
   }
 
 exports.Game = Game;
@@ -28,5 +28,5 @@ Game.prototype.boardDimension = function(fieldsInALine) {
 }
 
 Game.prototype.play = function() {
-  return
+  this.turn += 1
 }

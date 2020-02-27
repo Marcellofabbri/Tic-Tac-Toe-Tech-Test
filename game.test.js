@@ -35,4 +35,10 @@ test('has two arrays: one with unclaimed fields and one with claimed fields', ()
   expect(game.takenFields).toBeInstanceOf(Array)
 });
 
-test.todo('has a function that entails the whole playing process')
+test('when playing, the turn property updates automatically at the end of a turn', () => {
+  game.numberOfPlayers(2)
+  game.boardDimension(3)
+  game.turn = 0
+  game.play()
+  expect(game.turn).toBe(1)
+});
