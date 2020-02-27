@@ -17,8 +17,8 @@ Game.prototype.numberOfPlayers = function(totalNumberOfPlayers) {
 }
 
 Game.prototype.boardDimension = function(fieldsInALine) {
-  for (c = 0; c < fieldsInALine; c++) {
-    for (i = 0; i < fieldsInALine; i++) {
+  for (var c = 0; c < fieldsInALine; c++) {
+    for (var i = 0; i < fieldsInALine; i++) {
     var map = new Map()
     map[c] = i
     this.board.push(map)
