@@ -20,13 +20,21 @@ Game.prototype.numberOfPlayers = function(totalNumberOfPlayers) {
 Game.prototype.boardDimension = function(fieldsInALine) {
   for (var c = 0; c < fieldsInALine; c++) {
     for (var i = 0; i < fieldsInALine; i++) {
-    var map = new Map()
-    map[c] = i
+    var map = {row: c, column: i}
     this.availableFields.push(map)
     }
   }
 }
 
-Game.prototype.play = function() {
-  this.turn + 1 === this.players.length ? this.turn = 0 : this.turn += 1
+function arrayRemove(arr, value) {
+  return arr.filter(function(ele){
+      return ele != value;
+  });
+}
+
+Game.prototype.play = function(row, column) {
+    var claimedField = this.availableFields.find(field => field.row == row & field.column == column)
+    this.availableFields = arrayRemove(this.availableFields, claimedField)
+    this.players[this.turn].claimedFields.push(claimedField)
+    this.turn + 1 === this.players.length ? this.turn = 0 : this.turn += 1
 }

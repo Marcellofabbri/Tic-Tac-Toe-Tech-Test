@@ -6,6 +6,11 @@ beforeEach(() => {
   game = new Game();
 });
 
+function startGameHelper() {
+  game.numberOfPlayers(2)
+  game.boardDimension(3)
+}
+
 test('has a property that stores players', () => {
   expect(game.players).toBeInstanceOf(Array);
 });
@@ -27,20 +32,25 @@ test('has a playing board stored as a property', () => {
 test('can decide the dimensions of the board', () => {
   game.boardDimension(3)
   expect(game.availableFields).toHaveLength(9)
-  expect(game.availableFields[0]).toBeInstanceOf(Map)
+  expect(game.availableFields[0].row).toBe(0)
+  expect(game.availableFields[0].column).toBe(0)
 });
 
 test('has two arrays: one with unclaimed fields and one with claimed fields', () => {
   expect(game.takenFields).toBeInstanceOf(Array)
 });
 
-test('when playing, the turn property updates automatically at the end of a turn', () => {
-
-  game.numberOfPlayers(2)
-  console.log(game.players)
-  game.boardDimension(3)
-  game.play()
+test('the turn property updates automatically at the end of a turn', () => {
+  startGameHelper()
+  game.play(0, 0)
   expect(game.turn).toBe(1)
-  game.play()
+  game.play(0, 0)
   expect(game.turn).toBe(0)
+});
+
+test('the player selects a field to claim', () => {
+  startGameHelper()
+  game.play(1, 1)
+  game.play(0, 1)
+  expect(game.players[0].claimedFields).toContainEqual({row: 1, column: 1})
 });
