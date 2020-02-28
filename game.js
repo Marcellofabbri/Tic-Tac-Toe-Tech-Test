@@ -28,9 +28,5 @@ Game.prototype.boardDimension = function(fieldsInALine) {
 }
 
 Game.prototype.play = function() {
-  if (this.turn + 1 === this.players.length) {
-    this.turn = 0
-  } else {
-    this.turn += 1
-  }
+  this.turn + 1 === this.players.length ? this.turn = 0 : this.turn += 1
 }
