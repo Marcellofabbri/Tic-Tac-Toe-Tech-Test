@@ -7,7 +7,7 @@ The test could be taken either in Ruby or JavaScript. This one is in __javascrip
 
 
 ### Running tests
-To use __Jasmine__ from the command line run `jasmine`. The latest release of the standalone version of Jasmine has been downloaded from the official [repository](https://github.com/jasmine/jasmine/releases). This has set up the structure of the directory. When downloading this repository no download is necessary, Jasmine is already set up.
+To use __Jest__ from the command line run `yarn test` or `npm test`. Jest can be downloaded from the official [website](https://jestjs.io/docs/en/getting-started.html). When downloading this repository the 'package.json' file is already configured to make Jest run appropriately with coverage.
 __Rubocop__ is integrated with Rspec and will run whenever Rspec is called, and is an acceptance criterion for passing tests.
 To call Rubocop indipendently run `rubocop` from the command line.
 Running `rake` from the top level of the directory will also run Rspec.

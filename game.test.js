@@ -1,11 +1,10 @@
 const { Game } = require('./game');
 
-var game = new Game()
+//var game = new Game()
 
-// function setupHelper() {
-//   game.numberOfPlayers(2)
-
-// }
+beforeEach(() => {
+  game = new Game();
+});
 
 test('has a property that stores players', () => {
   expect(game.players).toBeInstanceOf(Array);
@@ -36,9 +35,12 @@ test('has two arrays: one with unclaimed fields and one with claimed fields', ()
 });
 
 test('when playing, the turn property updates automatically at the end of a turn', () => {
+
   game.numberOfPlayers(2)
+  console.log(game.players)
   game.boardDimension(3)
-  game.turn = 0
   game.play()
   expect(game.turn).toBe(1)
+  game.play()
+  expect(game.turn).toBe(0)
 });

@@ -1,4 +1,4 @@
-var { Player } = require('./player');
+var { Player } = require('./player.js');
 
 function Game() {
   this.players = []
@@ -10,9 +10,9 @@ function Game() {
 exports.Game = Game;
 
 Game.prototype.numberOfPlayers = function(totalNumberOfPlayers) {
-  for (var i = 0; i < totalNumberOfPlayers; i++) {
+  for (var j = 0; j < totalNumberOfPlayers; j++) {
     var player = new Player()
-    player.number = i
+    player.number = j
     this.players.push(player)
   }
 }
@@ -28,5 +28,9 @@ Game.prototype.boardDimension = function(fieldsInALine) {
 }
 
 Game.prototype.play = function() {
-  this.turn += 1
+  if (this.turn + 1 === this.players.length) {
+    this.turn = 0
+  } else {
+    this.turn += 1
+  }
 }
