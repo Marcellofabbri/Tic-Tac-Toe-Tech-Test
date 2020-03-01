@@ -23,7 +23,7 @@ I wanted to abstract players as separate objects in case they need to be extende
 
 While developing the program I needed to add three more properties to the Game function: __turn__ (to identify whose turn it is), __boardSize__ (the chosen size of the board), __winner__ (set to none until there's a winner, in which case it'll be the player number)
 
-Then I created the main method for the game:
+Then I created the main method for the game, ```game.play(row, column)```, invoked for example as below:
 ```
 game.play(2, 0)
 ```
