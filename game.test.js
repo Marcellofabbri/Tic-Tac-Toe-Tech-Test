@@ -60,7 +60,7 @@ test('the game does not declare a winner if there is not one yet', () => {
   game.play(2, 0)
   game.play(0, 1)
   game.play(2, 1)
-  expect(game.winner).toBe('')
+  expect(game.winner).toBe('none')
 })
 
 test('the game declares a winner when there is one', () => {
@@ -73,5 +73,13 @@ test('the game declares a winner when there is one', () => {
   expect(game.winner).toBe(game.players[0].number)
 })
 
-
+test('is the game over?', () => {
+  startGameHelper()
+  game.play(0, 0)
+  game.play(2, 0)
+  game.play(0, 1)
+  game.play(2, 1)
+  game.play(0, 2)
+  expect(game.didAnybodyWin).toThrowError('The game is over')
+})
 

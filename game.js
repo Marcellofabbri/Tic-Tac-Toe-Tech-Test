@@ -5,7 +5,7 @@ function Game() {
   this.availableFields = []
   this.turn = 0
   this.boardSize = 0
-  this.winner = ''
+  this.winner = 'none'
   }
 
 exports.Game = Game;
@@ -33,8 +33,8 @@ function arrayRemove(arr, value) {
     return ele != value;
   });
 }
-
 Game.prototype.play = function(row, column) {
+  this.didAnybodyWin()
   var claimedField = this.availableFields.find(field => field.row == row & field.column == column)
   this.availableFields = arrayRemove(this.availableFields, claimedField)
   this.players[this.turn].claimedFields.push(claimedField)
@@ -52,5 +52,11 @@ Game.prototype.declareWinner = function() {
     if (playerPlaying.claimedFields.filter(field => field.row == b).length === this.boardSize) {
       this.winner = playerPlaying.number
     }
+  }
+}
+
+Game.prototype.didAnybodyWin = function() {
+  if (this.winner !== 'none') {
+    throw new Error('The game is over')
   }
 }
