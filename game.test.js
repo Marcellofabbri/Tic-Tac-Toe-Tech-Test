@@ -53,4 +53,8 @@ test('the player selects a field to claim', () => {
   game.play(1, 1)
   game.play(0, 1)
   expect(game.players[0].claimedFields).toContainEqual({row: 1, column: 1})
+  expect(game.players[1].claimedFields).toContainEqual({row: 0, column: 1})
+  expect(game.availableFields).not.toContainEqual({row: 1, column: 1})
+  expect(game.availableFields).not.toContainEqual({row: 0, column: 1})
 });
+
