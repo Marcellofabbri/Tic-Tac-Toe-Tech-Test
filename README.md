@@ -3,39 +3,36 @@
 
 The test could be taken either in Ruby or JavaScript. This one is in __javascript__.
 
-### Gems
-
-
 ### Running tests
 To use __Jest__ from the command line run `yarn test` or `npm test`. Jest can be downloaded from the official [website](https://jestjs.io/docs/en/getting-started.html). When downloading this repository the 'package.json' file is already configured to make Jest run appropriately with coverage.
-__Rubocop__ is integrated with Rspec and will run whenever Rspec is called, and is an acceptance criterion for passing tests.
-To call Rubocop indipendently run `rubocop` from the command line.
-Running `rake` from the top level of the directory will also run Rspec.
-
-### Coverage
-[![Coverage](https://Marcellofabbri.github.io/Bank-Tech-Test/badge.svg)](https://github.com/Marcellofabbri/Bank-Tech-Test)
-__SimpleCov__ is integrated with Rspec and will run whenever Rspec is called.
 
 ### The Program
-It should be able to be interacted with through a REPL such as Pry, IRB (Ruby) or a browser console (JavaScript).
-It has four classes: Account, Record, Datestamper, Printer.
+It should be able to be interacted with through a REPL such as a browser console (JavaScript).
+It has two classes: Game, Player.
 
-Example on how to meet the final requirement of the test:
-- in the terminal, from the top level of the project's directory, run `irb` and run the following commands:
+## The chain of thought behind the program
+When approaching the cration of this program I drew inspiration from previous challenges from Makers, such as the Thermostat challenge or the Bowling challenge.
+I started by giving the Game function some state, such as the __available fields__ array and the __players__ array, to be filled by the methods that set up the necessery tools to begin a game of Tic-Tac-Toe: the board of fields and the number of players playing. It's better to keep in mind a program may need to get extended, so instead of hardcoding a simple board of 9 fields (3x3) and two players, I started by creating two functions that let the user decide them. E.g.:
 ```
-require './lib/printer.rb'
-printer = Printer.new(Account.new)
-account = printer.account
-account.deposit(2000)
-account.deposit(1000)
-account.withdraw(500)
-printer.print_statement
+var game = new Game()
+game.numberOfPlayers(2)
+game.boardDimension(3)
 ```
-- the result should be:
+will fill the __available fields__ array with nine map objects (hashes) with appropriate properties row and columns like ```{ row: 1, column: 2}```, and two __Player__ objects in the __players__ property of Game.
+I wanted to abstract players as separate objects in case they need to be extended with usernames etc. For now they only have two properties: __number__ (the player number, or ID), and the __claimed fields__ array, to store fields that have been taken during a turn.
+
+While developing the program I needed to add three more properties to the Game function: __turn__ (to identify whose turn it is), __boardSize__ (the chosen size of the board), __winner__ (set to none until there's a winner, in which case it'll be the player number)
+
+Then I created the main method for the game:
 ```
-date || credit || debit || balance
-24/02/2020 ||  || 500.0 || 2500.0
-24/02/2020 || 2000.0 ||  || 2000.0
-24/02/2020 || 1000.0 ||  || 3000.0
+game.play(2, 0)
 ```
-The date is supposed to be relevant to the real date on which the commands are run.
+
+This entails a number of functions that need to be called during a turn:
+- ```game.didAnybodyWin``` checks if ```game.winner``` is still set to 'none' and throws an error if it isn't.
+- ```game.availableFields``` is mutated to an array where the field selected through the argument of ```play``` is removed.
+- the selected field is pushed into the ```player.claimedFields``` array of whichever player's turn it it.
+- ```game.declareWinner()``` checks if any player has a trio of fields that constitute any sort of victory.
+- ```game.updateTurn()``` updates the turn.
+
+The program doesn't yet have an option to recognize victories for boards possibly different in size than 3x3, and at the moment can only generate square (not rectangular) board.
