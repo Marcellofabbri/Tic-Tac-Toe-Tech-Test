@@ -36,15 +36,11 @@ test('can decide the dimensions of the board', () => {
   expect(game.availableFields[0].column).toBe(0)
 });
 
-test('has two arrays: one with unclaimed fields and one with claimed fields', () => {
-  expect(game.takenFields).toBeInstanceOf(Array)
-});
-
 test('the turn property updates automatically at the end of a turn', () => {
   startGameHelper()
   game.play(0, 0)
   expect(game.turn).toBe(1)
-  game.play(0, 0)
+  game.play(0, 1)
   expect(game.turn).toBe(0)
 });
 
@@ -57,4 +53,25 @@ test('the player selects a field to claim', () => {
   expect(game.availableFields).not.toContainEqual({row: 1, column: 1})
   expect(game.availableFields).not.toContainEqual({row: 0, column: 1})
 });
+
+test('the game does not declare a winner if there is not one yet', () => {
+  startGameHelper()
+  game.play(0, 0)
+  game.play(2, 0)
+  game.play(0, 1)
+  game.play(2, 1)
+  expect(game.winner).toBe('')
+})
+
+test('the game declares a winner when there is one', () => {
+  startGameHelper()
+  game.play(0, 0)
+  game.play(2, 0)
+  game.play(0, 1)
+  game.play(2, 1)
+  game.play(0, 2)
+  expect(game.winner).toBe(game.players[0].number)
+})
+
+
 
