@@ -49,7 +49,14 @@ Game.prototype.updateTurn = function() {
 Game.prototype.declareWinner = function() {
   var playerPlaying = this.players[this.turn]
   for (b = 0; b < this.boardSize; b++) {
-    if (playerPlaying.claimedFields.filter(field => field.row == b).length === this.boardSize) {
+    var winningArrayHorizontally = playerPlaying.claimedFields.filter(field => field.row == b)
+    var winningArrayVertically = playerPlaying.claimedFields.filter(field => field.column == b)
+    var winningArrayDiagonallyDown = playerPlaying.claimedFields.filter(field => field.column == field.row)
+    var winningArrayDiagonallyUp = playerPlaying.claimedFields.filter(field => (field.column + field.row) == 2)
+    if (winningArrayHorizontally.length === this.boardSize ||
+      winningArrayVertically.length === this.boardSize ||
+      winningArrayDiagonallyDown.length === this.boardSize ||
+      winningArrayDiagonallyUp.length === this.boardSize) {
       this.winner = playerPlaying.number
     }
   }

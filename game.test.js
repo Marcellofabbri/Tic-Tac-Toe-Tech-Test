@@ -63,7 +63,7 @@ test('the game does not declare a winner if there is not one yet', () => {
   expect(game.winner).toBe('none')
 })
 
-test('the game declares a winner when there is one', () => {
+test('the game declares a winner when a players wins horizontally', () => {
   startGameHelper()
   game.play(0, 0)
   game.play(2, 0)
@@ -71,6 +71,42 @@ test('the game declares a winner when there is one', () => {
   game.play(2, 1)
   game.play(0, 2)
   expect(game.winner).toBe(game.players[0].number)
+})
+
+test('the game declares a winner when a players wins vartically', () => {
+  startGameHelper()
+  game.play(0, 0)
+  game.play(0, 2)
+  game.play(1, 0)
+  game.play(1, 2)
+  game.play(1, 1)
+  game.play(0, 1)
+  game.play(2, 0)
+  expect(game.winner).toBe(game.players[0].number)
+})
+
+test('the game declares a winner when a players wins diagonally (down)', () => {
+  startGameHelper()
+  game.play(0, 0)
+  game.play(0, 2)
+  game.play(1, 0)
+  game.play(1, 2)
+  game.play(1, 1)
+  game.play(0, 1)
+  game.play(2, 2)
+  expect(game.winner).toBe(game.players[0].number)
+})
+
+test('the game declares a winner when a players wins diagonally (up)', () => {
+  startGameHelper()
+  game.play(0, 0)
+  game.play(2, 0)
+  game.play(1, 0)
+  game.play(1, 1)
+  game.play(2, 1)
+  game.play(0, 2)
+  console.log(game.players[1].claimedFields)
+  expect(game.winner).toBe(game.players[1].number)
 })
 
 test('is the game over?', () => {
