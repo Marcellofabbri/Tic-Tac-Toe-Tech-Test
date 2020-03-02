@@ -36,3 +36,4 @@ This entails a number of functions that need to be called during a turn:
 - ```game.updateTurn()``` updates the turn.
 
 The program doesn't yet have an option to recognize victories for boards possibly different in size than 3x3, and at the moment can only generate square (not rectangular) board.
+The program doesn't yet throw errors when trying to claim fields that have already been claimed.
